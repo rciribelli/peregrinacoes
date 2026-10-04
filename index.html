@@ -13,7 +13,7 @@
 /* Layout: um caminho vertical de peregrino — capa com a imagem de Nossa Senhora, convite, o lugar, o roteiro, o que inclui, memórias, inscrição. */
 :root {
   /* Cores da imagem de Nossa Senhora das Graças: azul-celeste do manto, branco da túnica, dourado dos detalhes */
-  --bg: #f5f8fb;
+  --bg: #f3f9fe;
   --surface: #ffffff;
   --ink: #172a40;
   --muted: #56677c;
@@ -21,10 +21,11 @@
   --accent: #2c5d8f;      /* azul do manto, na sombra */
   --accent-ink: #ffffff;
   --marian: #3b6e9e;      /* azul do manto */
-  --marian-soft: #e6f0f9; /* celeste claro */
+  --marian-soft: #dcedfa; /* celeste claro */
+  --celeste: #a8d4f2;     /* azul-celeste do manto: cor base */
   --gold: #a5802f;        /* dourado da barra do manto e das estrelas */
-  --band: #24527f;
-  --hero-ink: #fdfcf8;
+  --band: #a8d4f2;
+  --hero-ink: #102a44;
   --font-display: "Marcellus", "Trajan Pro", Georgia, serif;
   --font-script: "Cormorant Garamond", Georgia, serif;
   --font-body: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
@@ -41,13 +42,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0e1621; --surface: #162232; --ink: #e9f0f7; --muted: #a2b2c5; --line: #263649;
-    --accent: #8fbbe3; --accent-ink: #0e1d2e; --marian: #a9cbec; --marian-soft: #132235; --gold: #d8b062; --band: #183453;
+    --accent: #8fbbe3; --accent-ink: #0e1d2e; --marian: #a9cbec; --marian-soft: #132235; --gold: #d8b062; --band: #a8d4f2; --celeste: #a8d4f2;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0e1621; --surface: #162232; --ink: #e9f0f7; --muted: #a2b2c5; --line: #263649;
-  --accent: #8fbbe3; --accent-ink: #0e1d2e; --marian: #a9cbec; --marian-soft: #132235; --gold: #d8b062; --band: #183453;
+  --accent: #8fbbe3; --accent-ink: #0e1d2e; --marian: #a9cbec; --marian-soft: #132235; --gold: #d8b062; --band: #a8d4f2; --celeste: #a8d4f2;
   color-scheme: dark;
 }
 
@@ -101,28 +102,29 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .nav { display: flex; align-items: center; gap: 26px; font-size: .95rem; font-weight: 600; }
 .nav a:not(.btn) { text-decoration: none; color: var(--muted); }
 .nav a:not(.btn):hover { color: var(--accent); }
-.nav .btn { padding: 10px 18px; font-size: .9rem; }
+.nav .btn { padding: 10px 18px; font-size: .9rem; white-space: nowrap; }
+@media (max-width: 420px) { .brand { gap: 8px; } .brand img { width: 44px; height: 44px; } .brand span { font-size: 1.05rem; } .brand small { font-size: .62rem; letter-spacing: .08em; } .nav .btn { padding: 9px 14px; font-size: .85rem; } }
 @media (max-width: 860px) { .nav a:not(.btn) { display: none; } }
 
 /* Capa */
 .hero {
   color: var(--hero-ink); padding-block: clamp(56px, 8vw, 104px);
-  background: radial-gradient(120% 90% at 85% 40%, #3a6d9c 0%, #1b3a5e 60%, #10243c 100%);
+  background: radial-gradient(120% 90% at 80% 30%, #e4f2fc 0%, #bfe0f6 45%, var(--celeste) 100%);
 }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .hero-text { display: grid; gap: 14px; min-width: 0; }
-.hero-photo { margin: 0; min-width: 0; padding: 12px; border: 1px solid rgba(240,201,138,.55); border-radius: calc(var(--radius) + 6px); }
-.hero-photo img { width: 100%; height: auto; border-radius: var(--radius); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
-.hero-photo figcaption { margin-top: 12px; font-size: var(--step--1); color: #c9d8e8; text-align: center; }
+.hero-photo { margin: 0; min-width: 0; padding: 12px; border: 1px solid rgba(122,87,20,.45); border-radius: calc(var(--radius) + 6px); }
+.hero-photo img { width: 100%; height: auto; border-radius: var(--radius); box-shadow: 0 20px 50px rgba(16,42,68,.28); }
+.hero-photo figcaption { margin-top: 12px; font-size: var(--step--1); color: #2a4a68; text-align: center; }
 @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero-photo { max-width: 560px; } }
-.hero .eyebrow { color: #f0c98a; }
+.hero .eyebrow { color: #7a5714; }
 .hero h1 { font-size: var(--step-4); max-width: 13ch; line-height: 1.02; }
-.hero h1 em { font-family: var(--font-script); font-style: italic; font-weight: 500; color: #f0c98a; }
-.hero .subtitle { font-family: var(--font-script); font-style: italic; font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.2; color: #f0c98a; margin-top: 2px; max-width: 32rem; text-wrap: balance; }
-.hero .lead { font-size: var(--step-1); max-width: 34rem; color: #eaf1f8; margin-top: 8px; }
+.hero h1 em { font-family: var(--font-script); font-style: italic; font-weight: 500; color: #8a6418; }
+.hero .subtitle { font-family: var(--font-script); font-style: italic; font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.2; color: #7a5714; margin-top: 2px; max-width: 32rem; text-wrap: balance; }
+.hero .lead { font-size: var(--step-1); max-width: 34rem; color: #1d3a57; margin-top: 8px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
-.hero .btn-primary { background: #fdfcf8; color: #1f4a75; }
-.hero .btn-ghost { color: #fdfcf8; }
+.hero .btn-primary { background: #14324f; color: #ffffff; }
+.hero .btn-ghost { color: #14324f; }
 
 /* Faixa de fatos */
 .facts { background: var(--surface); border-bottom: 1px solid var(--line); padding-block: 0; }
@@ -189,12 +191,12 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 @media (max-width: 560px) { .checklist { grid-template-columns: 1fr; } }
 
 /* Inscrição */
-.signup { background: var(--band); color: #ffffff; }
-.signup .eyebrow { color: #f6d9a8; }
-.signup .section-head p { color: color-mix(in srgb, #ffffff 82%, transparent); }
+.signup { background: var(--band); color: #102a44; }
+.signup .eyebrow { color: #6e4f12; }
+.signup .section-head p { color: #1d3a57; }
 .steps { list-style: none; padding: 0; margin: 0 0 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; }
-.steps li { counter-increment: s; display: grid; gap: 4px; padding-top: 16px; border-top: 1px solid color-mix(in srgb, #ffffff 35%, transparent); }
-.steps li::before { content: "Passo " counter(s); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: #f6d9a8; }
+.steps li { counter-increment: s; display: grid; gap: 4px; padding-top: 16px; border-top: 1px solid rgba(16,42,68,.25); }
+.steps li::before { content: "Passo " counter(s); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: #6e4f12; }
 .steps strong { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; }
 .steps span { font-size: .95rem; opacity: .85; }
 .pay { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
